@@ -28,7 +28,7 @@ function Button({
   variant?: "primary" | "ghost";
 }) {
   const base =
-    "inline-flex items-center justify-center rounded-full px-4 py-2.5 text-sm font-medium transition-colors";
+    "inline-flex items-center justify-center rounded-full px-3 py-2 text-xs font-medium transition-colors sm:px-4 sm:py-2.5 sm:text-sm";
   const styles =
     variant === "primary"
       ? "bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)] shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-glow)]"
@@ -51,7 +51,7 @@ export default function Home() {
     <main className="min-h-dvh bg-[var(--background)]">
       <div className="mx-auto flex min-h-dvh max-w-5xl flex-col px-4 py-8 sm:px-6">
         {/* Top nav */}
-        <header className="mb-10 flex items-center justify-between">
+        <header className="mb-10 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <div
               className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[var(--accent)] text-white"
@@ -66,27 +66,29 @@ export default function Home() {
             </span>
           </div>
           <nav className="flex items-center gap-2 text-xs sm:gap-3 sm:text-sm">
-            <a
-              href="#how-it-works"
-              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
-            >
-              How it works
-            </a>
-            <a
-              href="#features"
-              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
-            >
-              Features
-            </a>
-            <a
-              href="#roadmap"
-              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
-            >
-              Roadmap
-            </a>
+            <div className="hidden items-center gap-3 sm:flex">
+              <a
+                href="#how-it-works"
+                className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              >
+                How it works
+              </a>
+              <a
+                href="#features"
+                className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              >
+                Features
+              </a>
+              <a
+                href="#roadmap"
+                className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              >
+                Roadmap
+              </a>
+            </div>
             <Link
               href="https://app.gotofu.io/login"
-              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)] text-xs sm:text-sm"
             >
               Sign in
             </Link>
