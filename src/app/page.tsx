@@ -65,28 +65,28 @@ export default function Home() {
               Tofu
             </span>
           </div>
-          <nav className="flex items-center gap-3 text-sm">
+          <nav className="flex items-center gap-2 text-xs sm:gap-3 sm:text-sm">
             <a
               href="#how-it-works"
-              className="text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
             >
               How it works
             </a>
             <a
               href="#features"
-              className="text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
             >
               Features
             </a>
             <a
               href="#roadmap"
-              className="text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
             >
               Roadmap
             </a>
             <Link
               href="https://app.gotofu.io/login"
-              className="text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
+              className="whitespace-nowrap text-[var(--muted)] transition-colors hover:text-[var(--foreground)]"
             >
               Sign in
             </Link>
@@ -488,7 +488,7 @@ export default function Home() {
               Run synthetic interviews today. No recruitment, no scheduling, no
               waiting — just honest, unfiltered feedback.
             </p>
-            <div className="mt-5 flex flex-wrap justify-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
               <Link href="https://app.gotofu.io/register">
                 <Button>Get started for free</Button>
               </Link>
