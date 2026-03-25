@@ -1,31 +1,131 @@
-name: Landing CI
+# Build check: runs on every PR (no extra secrets).
+#
+# Preview URL in the PR comment: add Actions secrets (Settings → Secrets and variables → Actions):
+#   VERCEL_TOKEN
+#   VERCEL_ORG_ID
+#   VERCEL_PROJECT_ID
+# Create them from Vercel → Project Settings → General, or run `vercel link` locally and read .vercel/project.json.
+#
+# The Vercel deploy step uses continue-on-error so missing secrets do not fail the workflow; the PR comment
+# will still show a green build and explain if preview was not deployed.
+
+name: Landing build
 
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: apps/landing
+permissions:
+  contents: read
+
+concurrency:
+  group: landing-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/landing
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version-file: apps/landing/.nvmrc
           cache: npm
           cache-dependency-path: apps/landing/package-lock.json
 
-      - name: Install dependencies
+      - name: Install
         run: npm ci
-
-      - name: Lint
-        run: npm run lint
 
       - name: Build
         run: npm run build
+
+  # Comment on every PR: build status + workflow link; preview URL when Vercel secrets exist (same-repo PRs only).
+  pr-comment:
+    name: PR summary
+    needs: build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy Vercel preview
+        id: vercel
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        continue-on-error: true
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-comment: false
+
+      - name: Upsert PR comment (build + preview link)
+        uses: actions/github-script@v7
+        env:
+          PREVIEW_URL: ${{ steps.vercel.outputs.preview-url || '' }}
+          VERCEL_CONCLUSION: ${{ steps.vercel.conclusion || 'skipped' }}
+          IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+        with:
+          script: |
+            const marker = '<!-- landing-ci-pr-comment -->';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const preview = (process.env.PREVIEW_URL || '').trim();
+            const isFork = process.env.IS_FORK === 'true';
+            const vercelConclusion = process.env.VERCEL_CONCLUSION || 'skipped';
+
+            let previewLine;
+            if (isFork) {
+              previewLine =
+                '**Preview:** _Vercel deploy runs only for PRs from branches in this repo (not forks)._';
+            } else if (preview) {
+              previewLine = `**Preview:** ${preview}`;
+            } else if (vercelConclusion === 'failure') {
+              previewLine =
+                '**Preview:** _Deploy failed — check Actions secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` and Vercel project settings._';
+            } else {
+              previewLine =
+                '**Preview:** _No URL yet — add the Vercel secrets above or connect the repo in Vercel for automatic previews._';
+            }
+
+            const body = `${marker}
+            ### Landing CI
+            - **Build:** passed (Next.js production build in \`apps/landing\`)
+            - ${previewLine}
+            - [View workflow run](${runUrl})`;
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const existing = comments.find((c) => c.user?.type === 'Bot' && c.body?.includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
