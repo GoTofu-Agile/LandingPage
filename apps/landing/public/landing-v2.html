@@ -1472,7 +1472,7 @@
         const defaultCookiePreferences = {
             version: 1,
             necessary: true,
-            analytics: false,
+            analytics: true,
             timestamp: null,
         };
 
@@ -1533,6 +1533,12 @@
             }
         }
 
+        function updateCookieManageVisibility(preferences) {
+            if (!cookieManage) return;
+            const allCookiesAccepted = Boolean(preferences && preferences.necessary && preferences.analytics);
+            cookieManage.hidden = allCookiesAccepted;
+        }
+
         function showCookieBanner() {
             if (cookieBanner) {
                 cookieBanner.removeAttribute('hidden');
@@ -1560,6 +1566,7 @@
             publishCookiePreferences(payload);
             loadClarityIfConsented(payload);
             applyCookiePreferencesToUi(payload);
+            updateCookieManageVisibility(payload);
             hideCookieBanner();
         }
 
@@ -1568,11 +1575,13 @@
             publishCookiePreferences(existingCookiePreferences);
             loadClarityIfConsented(existingCookiePreferences);
             applyCookiePreferencesToUi(existingCookiePreferences);
+            updateCookieManageVisibility(existingCookiePreferences);
             hideCookieBanner();
         } else {
             publishCookiePreferences(defaultCookiePreferences);
             loadClarityIfConsented(defaultCookiePreferences);
             applyCookiePreferencesToUi(defaultCookiePreferences);
+            updateCookieManageVisibility(defaultCookiePreferences);
             showCookieBanner();
         }
 
