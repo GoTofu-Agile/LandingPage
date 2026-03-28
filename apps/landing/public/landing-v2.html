@@ -591,6 +591,142 @@
         .imprint-block a:hover { opacity: 0.5; }
         .imprint-divider { width: 40px; height: 2px; background: var(--text-dark); margin-bottom: 2.5rem; opacity: 0.2; }
 
+        /* Section 7 - Privacy Policy */
+        .section-seven {
+            background: linear-gradient(135deg, #e8eef8 0%, #d0daf0 30%, #b8c6e8 60%, #a0b2e0 100%);
+        }
+
+        .privacy-layout {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 8rem 3rem 6rem;
+        }
+
+        .privacy-content {
+            max-width: 760px;
+            width: 100%;
+        }
+
+        .privacy-content h1 {
+            font-size: clamp(2.5rem, 4.5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .privacy-meta {
+            font-size: 0.875rem;
+            color: var(--text-medium);
+            letter-spacing: 0.05em;
+            margin-bottom: 3rem;
+        }
+
+        .privacy-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .privacy-block h2 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-medium);
+            margin-bottom: 1rem;
+        }
+
+        .privacy-block h3 {
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-medium);
+            margin-bottom: 0.6rem;
+            margin-top: 1.5rem;
+            opacity: 0.75;
+        }
+
+        .privacy-block p {
+            font-size: 1.0625rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .privacy-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 0.75rem 0;
+        }
+
+        .privacy-block ul li {
+            font-size: 1.0625rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .privacy-block ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--text-medium);
+            font-weight: 300;
+        }
+
+        .privacy-block a {
+            color: var(--text-dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--text-dark);
+            transition: opacity 0.3s ease;
+        }
+
+        .privacy-block a:hover {
+            opacity: 0.5;
+        }
+
+        .privacy-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--text-dark);
+            margin-bottom: 2.5rem;
+            opacity: 0.2;
+        }
+
+        .privacy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 0.9375rem;
+        }
+
+        .privacy-table th {
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-medium);
+            padding: 0.5rem 0.75rem 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-weight: 500;
+        }
+
+        .privacy-table td {
+            padding: 0.75rem 0.75rem 0.75rem 0;
+            color: var(--text-dark);
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            vertical-align: top;
+        }
+
+        .privacy-table td:first-child {
+            font-weight: 500;
+            white-space: nowrap;
+            padding-right: 1.5rem;
+        }
+
         .cookie-banner {
             position: fixed;
             left: 50%;
@@ -820,6 +956,12 @@
             }
 
             .imprint-layout {
+                min-height: 0;
+                align-items: flex-start;
+                padding: 6rem 2rem 3rem;
+            }
+
+            .privacy-layout {
                 min-height: 0;
                 align-items: flex-start;
                 padding: 6rem 2rem 3rem;
@@ -1124,9 +1266,22 @@
                 padding: 1.5rem var(--m-pad-x) 3rem;
             }
 
+            .privacy-layout {
+                padding: 1.5rem var(--m-pad-x) 3rem;
+            }
+
             .imprint-content h1 {
                 font-size: clamp(1.75rem, 6vw, 2.5rem);
                 margin-bottom: 1.5rem;
+            }
+
+            .privacy-content h1 {
+                font-size: clamp(1.75rem, 6vw, 2.5rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .privacy-meta {
+                margin-bottom: 2rem;
             }
 
             .imprint-block p {
@@ -1134,8 +1289,30 @@
                 line-height: 1.75;
             }
 
+            .privacy-block p,
+            .privacy-block ul li {
+                font-size: 1rem;
+                line-height: 1.75;
+            }
+
             .imprint-block h2 {
                 font-size: 0.8125rem;
+            }
+
+            .privacy-block h2 {
+                font-size: 0.8125rem;
+            }
+
+            .privacy-block h3 {
+                font-size: 0.75rem;
+            }
+
+            .privacy-table {
+                font-size: 0.8125rem;
+            }
+
+            .privacy-table td:first-child {
+                white-space: normal;
             }
 
             .cookie-banner {
@@ -1200,6 +1377,13 @@
                 padding: 8rem 3rem;
                 align-items: center;
             }
+
+            .privacy-layout {
+                min-height: 100vh;
+                min-height: 100dvh;
+                padding: 8rem 3rem 6rem;
+                align-items: flex-start;
+            }
         }
 
         .api-tag-c1  { background: linear-gradient(135deg, rgba(102,126,234,0.13) 0%, rgba(118,75,162,0.08) 100%), #fff; border-left: 4px solid #764ba2; }
@@ -1238,7 +1422,7 @@
     </nav>
     <div class="section-counter">
         <div class="current">01</div>
-        <div class="total">/ 06</div>
+        <div class="total">/ 07</div>
         <div class="section-nav">
             <button>↑</button>
             <button>↓</button>
@@ -1385,6 +1569,267 @@
         </div>
     </section>
 
+    <!-- Section 7 - Privacy Policy -->
+    <section class="full-section section-seven">
+        <div class="privacy-layout">
+            <div class="privacy-content">
+                <div class="section-label">Legal</div>
+                <h1>Privacy Policy</h1>
+                <p class="privacy-meta">Last updated: March 27, 2026</p>
+
+                <!-- 1. Who We Are -->
+                <div class="privacy-block">
+                    <h2>1. Who We Are</h2>
+                    <p>GoTofu ("we", "us", "our") operates the synthetic user research platform available at <a href="https://app.gotofu.io">app.gotofu.io</a>. GoTofu is a student project at Code University of Applied Sciences, established in Germany.</p>
+                    <p>All data protection queries should be directed to our privacy team:<br>
+                    <strong>Privacy contact:</strong> <a href="mailto:privacy@gotofu.io">privacy@gotofu.io</a><br>
+                    <strong>Mailing address:</strong> GoTofu, Donaustr. 44, 12043 Berlin, Germany</p>
+                    <p>As GoTofu is established in the EU (Germany), no Article 27 EU Representative is required. We will respond to privacy requests within one month of receipt.</p>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 2. Data We Collect -->
+                <div class="privacy-block">
+                    <h2>2. Data We Collect</h2>
+                    <ul>
+                        <li><strong>Account data</strong> — name, email address, and authentication credentials provided at sign-up.</li>
+                        <li><strong>Organisation data</strong> — company name, product description, and team member details provided during onboarding.</li>
+                        <li><strong>Research data</strong> — AI persona configurations, interview transcripts, survey responses, uploaded files (PDFs, datasets), and generated analysis reports.</li>
+                        <li><strong>Usage data</strong> — token consumption, feature usage events, and interaction logs used for billing and service improvement.</li>
+                        <li><strong>Technical data</strong> — IP address, browser type, device identifiers, collected via cookies and server logs.</li>
+                    </ul>
+                    <p>This service is not directed at individuals under the age of 16. We do not knowingly collect personal data from children. If you believe a child has provided us with personal data, please contact <a href="mailto:privacy@gotofu.io">privacy@gotofu.io</a>.</p>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 3. How We Use Your Data -->
+                <div class="privacy-block">
+                    <h2>3. How We Use Your Data</h2>
+                    <ul>
+                        <li>To provide, maintain, and improve the GoTofu platform and its features.</li>
+                        <li>To generate AI personas and conduct synthetic interviews on your behalf.</li>
+                        <li>To produce automated insights and analysis reports from your research inputs.</li>
+                        <li>To manage your account, subscriptions, billing, and support requests.</li>
+                        <li>To detect, prevent, and respond to fraud, abuse, and security incidents.</li>
+                        <li>To monitor and improve platform reliability and performance.</li>
+                        <li>To comply with legal obligations and enforce our Terms of Service.</li>
+                        <li>To send optional marketing communications, where you have given explicit consent.</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 4. Legal Basis -->
+                <div class="privacy-block">
+                    <h2>4. Legal Basis for Processing (GDPR Art. 6)</h2>
+
+                    <h3>4.1 Contract Performance (Art. 6(1)(b))</h3>
+                    <p>Processing is necessary to deliver the services you signed up for — including account management, AI persona generation, synthetic interviews, and the production of research outputs. Providing account data (name, email) is a contractual requirement; without it we cannot create your account.</p>
+
+                    <h3>4.2 Legitimate Interests (Art. 6(1)(f))</h3>
+                    <p>We process certain data based on our legitimate interests: security and fraud prevention, service analytics and improvement, and short-term technical log retention. You have the right to object to this processing — see Section 9.</p>
+
+                    <h3>4.3 Consent (Art. 6(1)(a))</h3>
+                    <p>Where we send optional marketing communications, we rely on your freely given consent. You may withdraw consent at any time by clicking the unsubscribe link in any marketing email or by emailing <a href="mailto:privacy@gotofu.io">privacy@gotofu.io</a>.</p>
+
+                    <h3>4.4 Legal Obligation (Art. 6(1)(c))</h3>
+                    <p>Where applicable law requires us to retain or disclose data — for example, for tax or accounting purposes — we will process data accordingly.</p>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 5. Where Data Is Stored -->
+                <div class="privacy-block">
+                    <h2>5. Where Your Data Is Stored</h2>
+                    <ul>
+                        <li><strong>Database</strong> — PostgreSQL hosted on AWS EU West 1 (Ireland) via Supabase.</li>
+                        <li><strong>Authentication</strong> — Supabase, same EU region.</li>
+                        <li><strong>Application hosting</strong> — Vercel (defaults to US East compute; SCCs apply — see Section 6).</li>
+                        <li><strong>Email</strong> — Zoho Mail EU (mx.zoho.eu), hosted within the European Union.</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 6. Third-Party Processors -->
+                <div class="privacy-block">
+                    <h2>6. Third-Party Processors &amp; International Transfers</h2>
+                    <table class="privacy-table">
+                        <thead>
+                            <tr>
+                                <th>Processor</th>
+                                <th>Purpose</th>
+                                <th>Location</th>
+                                <th>Safeguard</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Supabase</td>
+                                <td>Database &amp; auth</td>
+                                <td>EU (Ireland)</td>
+                                <td>Within EU</td>
+                            </tr>
+                            <tr>
+                                <td>Vercel</td>
+                                <td>App hosting &amp; CDN</td>
+                                <td>US / global</td>
+                                <td>SCCs (2021/914)</td>
+                            </tr>
+                            <tr>
+                                <td>OpenAI</td>
+                                <td>AI persona generation</td>
+                                <td>United States</td>
+                                <td>SCCs + EU–US DPF</td>
+                            </tr>
+                            <tr>
+                                <td>Inngest</td>
+                                <td>Background jobs</td>
+                                <td>United States</td>
+                                <td>SCCs (pending confirmation)</td>
+                            </tr>
+                            <tr>
+                                <td>Tavily</td>
+                                <td>Web research grounding</td>
+                                <td>United States</td>
+                                <td>SCCs</td>
+                            </tr>
+                            <tr>
+                                <td>Zoho Mail EU</td>
+                                <td>Transactional email</td>
+                                <td>EU</td>
+                                <td>Within EU</td>
+                            </tr>
+                            <tr>
+                                <td>Hostinger</td>
+                                <td>DNS registrar</td>
+                                <td>Lithuania (EU)</td>
+                                <td>Within EU</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Copies of applicable SCCs are available on request by emailing <a href="mailto:privacy@gotofu.io">privacy@gotofu.io</a>.</p>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 7. AI-Specific Data Handling -->
+                <div class="privacy-block">
+                    <h2>7. AI-Specific Data Handling</h2>
+                    <p>Your research data is transmitted to AI providers solely to deliver the features you actively use. We do not use your personal data to train AI models. We use OpenAI's API with data usage opt-out enabled — your inputs and outputs are not used by OpenAI for model training under our enterprise data processing agreement.</p>
+                    <p>AI-generated outputs — including personas, interview transcripts, and reports — are stored in our EU-based database and remain your property.</p>
+                    <p><strong>Automated decision-making (Art. 22 GDPR):</strong> GoTofu uses AI to generate synthetic personas and research outputs. These outputs are constructed about fictional, synthetic personas and are not decisions made about you as an individual. Article 22 GDPR does not apply to the core AI functions of this platform.</p>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 8. Data Retention -->
+                <div class="privacy-block">
+                    <h2>8. Data Retention</h2>
+                    <ul>
+                        <li><strong>Account &amp; organisation data</strong> — retained for the duration of your active account; deleted within 30 days of account closure.</li>
+                        <li><strong>Research data</strong> (personas, transcripts, reports, uploads) — deleted within 30 days of account closure.</li>
+                        <li><strong>Usage data</strong> (token logs, billing records) — retained for 24 months, then deleted or anonymised.</li>
+                        <li><strong>Technical data</strong> (server logs, IP addresses) — retained for 90 days, then automatically deleted.</li>
+                        <li><strong>Legal obligation retention</strong> — financial records retained for the legally required period (typically 7 years).</li>
+                        <li><strong>Anonymised aggregate statistics</strong> — may be retained indefinitely as they do not constitute personal data.</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 9. Your Rights -->
+                <div class="privacy-block">
+                    <h2>9. Your Rights Under GDPR</h2>
+                    <ul>
+                        <li><strong>Right of access (Art. 15)</strong> — Request a copy of the personal data we hold about you.</li>
+                        <li><strong>Right to rectification (Art. 16)</strong> — Request correction of inaccurate or incomplete data.</li>
+                        <li><strong>Right to erasure (Art. 17)</strong> — Request deletion of your personal data ("right to be forgotten"), subject to legal retention obligations.</li>
+                        <li><strong>Right to restrict processing (Art. 18)</strong> — Request that we limit how we use your data in certain circumstances.</li>
+                        <li><strong>Right to data portability (Art. 20)</strong> — Receive your data in a structured, machine-readable format.</li>
+                        <li><strong>Right to object (Art. 21)</strong> — Object to processing based on legitimate interests or for direct marketing purposes.</li>
+                        <li><strong>Right to withdraw consent (Art. 7(3))</strong> — Withdraw consent for marketing at any time.</li>
+                    </ul>
+                    <p>To exercise your rights, email <a href="mailto:privacy@gotofu.io">privacy@gotofu.io</a>. We will respond within one month.</p>
+                    <p>You also have the right to lodge a complaint with our lead supervisory authority:<br>
+                    <strong>Berlin Commissioner for Data Protection and Freedom of Information (BlnBDI)</strong><br>
+                    Website: <a href="https://www.datenschutz-berlin.de" target="_blank">www.datenschutz-berlin.de</a><br>
+                    Address: Friedrichstr. 219, 10969 Berlin, Germany<br>
+                    Email: <a href="mailto:mailbox@datenschutz-berlin.de">mailbox@datenschutz-berlin.de</a></p>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 10. Cookies -->
+                <div class="privacy-block">
+                    <h2>10. Cookies</h2>
+                    <p>We use only essential cookies necessary for platform operation. We do not use advertising, analytics, or third-party tracking cookies.</p>
+                    <table class="privacy-table">
+                        <thead>
+                            <tr>
+                                <th>Cookie</th>
+                                <th>Purpose</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>sb-access-token</td>
+                                <td>Supabase authentication session token</td>
+                                <td>Session (expires on logout)</td>
+                            </tr>
+                            <tr>
+                                <td>sb-refresh-token</td>
+                                <td>Maintains authenticated session across page refreshes</td>
+                                <td>Up to 7 days</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>Because we use only strictly necessary cookies, we are not required to obtain cookie consent under the ePrivacy Directive. No cookie consent banner is displayed. If our cookie usage changes in future, this policy will be updated accordingly.</p>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 11. Security -->
+                <div class="privacy-block">
+                    <h2>11. Security</h2>
+                    <ul>
+                        <li><strong>Encryption in transit</strong> — All data is encrypted using TLS 1.2 or higher.</li>
+                        <li><strong>Encryption at rest</strong> — Database storage is encrypted at rest on AWS infrastructure.</li>
+                        <li><strong>Role-based access controls</strong> — Internal access to personal data is restricted to authorised personnel on a need-to-know basis.</li>
+                        <li><strong>Multi-tenant data isolation</strong> — Each organisation's data is logically isolated within our database.</li>
+                        <li><strong>API key security</strong> — Secret API keys and credentials are never exposed to client-side code.</li>
+                        <li><strong>Incident response</strong> — In the event of a personal data breach, we will notify the relevant supervisory authority within 72 hours (Art. 33 GDPR) and affected users where required (Art. 34 GDPR).</li>
+                    </ul>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 12. Changes -->
+                <div class="privacy-block">
+                    <h2>12. Changes to This Policy</h2>
+                    <p>We will notify you of material changes to this Privacy Policy via email or in-app notification at least 14 days before the changes take effect. The "Last updated" date at the top of this document will always reflect the most recent revision. Previous versions are available on request by emailing <a href="mailto:privacy@gotofu.io">privacy@gotofu.io</a>.</p>
+                </div>
+
+                <div class="privacy-divider"></div>
+
+                <!-- 13. Contact -->
+                <div class="privacy-block">
+                    <h2>13. Contact</h2>
+                    <p>
+                        GoTofu Privacy Team<br>
+                        Email: <a href="mailto:privacy@gotofu.io">privacy@gotofu.io</a><br>
+                        Address: Donaustr. 44, 12043 Berlin, Germany
+                    </p>
+                    <p>For complaints not resolved to your satisfaction, you may contact the Berlin Commissioner for Data Protection and Freedom of Information (BlnBDI) as described in Section 9.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <aside class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie preferences">
         <div>
             <h2 class="cookie-banner__heading">Your privacy settings</h2>
@@ -1415,7 +1860,7 @@
 
     <script>
         let currentSection = 1;
-        const totalSections = 6;
+        const totalSections = 7;
         function updateCounter(section) {
             currentSection = Math.max(1, Math.min(totalSections, section));
             document.querySelector('.section-counter .current').textContent = currentSection.toString().padStart(2, '0');
